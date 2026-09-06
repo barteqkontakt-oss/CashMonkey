@@ -1,0 +1,657 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Solana Goblin 👺</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050505;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* BACKGROUND */
+
+.bg {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(153,69,255,.20), transparent 28%),
+        radial-gradient(circle at 85% 70%, rgba(20,241,149,.15), transparent 30%),
+        #050505;
+}
+
+.grid {
+    position: fixed;
+    inset: 0;
+    z-index: -9;
+    opacity: .08;
+    background-image:
+        linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+.orb {
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(130px);
+    opacity: .25;
+    z-index: -8;
+    pointer-events: none;
+    animation: float 10s infinite ease-in-out;
+}
+
+.orb.one {
+    background: #9945ff;
+    top: -150px;
+    left: -100px;
+}
+
+.orb.two {
+    background: #14f195;
+    bottom: -150px;
+    right: -100px;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    50% {
+        transform: translate(80px, 50px);
+    }
+}
+
+/* NAVBAR */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5,5,5,.65);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 20px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo span {
+    color: #14f195;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: #fff;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.social {
+    border: 1px solid rgba(255,255,255,.15);
+    padding: 10px 16px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.social:hover {
+    border-color: #14f195;
+    box-shadow: 0 0 20px rgba(20,241,149,.15);
+}
+
+/* SECTIONS */
+
+section {
+    min-height: 100vh;
+    padding: 130px 8% 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1150px;
+    margin: auto;
+}
+
+/* HERO */
+
+.hero {
+    text-align: center;
+}
+
+.goblin {
+    font-size: clamp(100px, 18vw, 190px);
+    animation: goblin 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 35px rgba(20,241,149,.25));
+    margin-bottom: 20px;
+}
+
+@keyframes goblin {
+    0%,100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(-18px) rotate(3deg);
+    }
+}
+
+h1 {
+    font-size: clamp(50px, 9vw, 110px);
+    line-height: .9;
+    letter-spacing: -6px;
+    font-weight: 900;
+
+    background: linear-gradient(
+        90deg,
+        #9945ff,
+        #14f195,
+        #9945ff
+    );
+
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: gradient 5s linear infinite;
+}
+
+@keyframes gradient {
+    to {
+        background-position: 200%;
+    }
+}
+
+.hero p {
+    margin: 30px auto;
+    color: #999;
+    font-size: 17px;
+    max-width: 600px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 15px 26px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.primary {
+    color: #000;
+    background: #14f195;
+    box-shadow: 0 0 30px rgba(20,241,149,.18);
+}
+
+.primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 40px rgba(20,241,149,.4);
+}
+
+.secondary {
+    color: white;
+    border: 1px solid rgba(255,255,255,.15);
+}
+
+.secondary:hover {
+    border-color: #9945ff;
+    transform: translateY(-3px);
+}
+
+/* ABOUT */
+
+.about {
+    min-height: auto;
+}
+
+.section-title {
+    font-size: clamp(40px, 6vw, 70px);
+    font-weight: 900;
+    letter-spacing: -3px;
+    margin-bottom: 25px;
+}
+
+.section-title span {
+    color: #14f195;
+}
+
+.about-text {
+    max-width: 750px;
+    color: #999;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.cards {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.card {
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,.08);
+    background: rgba(255,255,255,.025);
+    border-radius: 22px;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(20,241,149,.35);
+}
+
+.card-icon {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #777;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* ROADMAP */
+
+.roadmap {
+    min-height: auto;
+    padding-bottom: 140px;
+}
+
+.timeline {
+    margin-top: 50px;
+    display: grid;
+    gap: 18px;
+}
+
+.phase {
+    padding: 28px;
+    border-left: 3px solid #14f195;
+    background: rgba(255,255,255,.025);
+    border-radius: 0 18px 18px 0;
+}
+
+.phase small {
+    color: #14f195;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.phase h3 {
+    margin: 8px 0;
+    font-size: 22px;
+}
+
+.phase p {
+    color: #777;
+}
+
+/* COMMUNITY */
+
+.community {
+    min-height: 70vh;
+    text-align: center;
+}
+
+.community p {
+    max-width: 600px;
+    margin: 20px auto 35px;
+    color: #888;
+    line-height: 1.7;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 35px 8%;
+    border-top: 1px solid rgba(255,255,255,.07);
+    text-align: center;
+    color: #666;
+    font-size: 13px;
+}
+
+footer strong {
+    color: #14f195;
+}
+
+.contract {
+    margin-top: 12px;
+    color: #444;
+    word-break: break-all;
+}
+
+/* MOBILE */
+
+@media (max-width: 750px) {
+
+    nav {
+        padding: 18px 5%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    h1 {
+        letter-spacing: -3px;
+    }
+
+    .goblin {
+        font-size: 100px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="grid"></div>
+<div class="orb one"></div>
+<div class="orb two"></div>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <a href="#home" class="logo">
+        👺 <span>GOBLIN</span>
+    </a>
+
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#community">Community</a>
+    </div>
+
+    <div class="nav-buttons">
+        <a class="social"
+           href="YOUR_X_LINK"
+           target="_blank">
+           𝕏
+        </a>
+
+        <a class="social"
+           href="YOUR_DEXSCREENER_LINK"
+           target="_blank">
+           Chart
+        </a>
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section id="home">
+
+    <div class="container hero">
+
+        <div class="goblin">👺</div>
+
+        <h1>
+            Solana Goblin<br>
+            is here.
+        </h1>
+
+        <p>
+            The goblin has arrived on Solana.
+            No promises. No boring stuff.
+            Just pure goblin energy.
+        </p>
+
+        <div class="buttons">
+
+            <a class="btn primary"
+               href="YOUR_BUY_LINK"
+               target="_blank">
+               BUY $GOBLIN
+            </a>
+
+            <a class="btn secondary"
+               href="YOUR_DEXSCREENER_LINK"
+               target="_blank">
+               VIEW CHART
+            </a>
+
+            <a class="btn secondary"
+               href="YOUR_X_LINK"
+               target="_blank">
+               FOLLOW 𝕏
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about" class="about">
+
+    <div class="container">
+
+        <div class="section-title">
+            Meet the <span>Goblin.</span>
+        </div>
+
+        <p class="about-text">
+            Born on Solana. Powered by memes.
+            The Solana Goblin is here to cause chaos,
+            build a community and have some fun along the way.
+            Nothing complicated. Just a goblin doing goblin things.
+        </p>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">👺</div>
+                <h3>Pure Goblin Energy</h3>
+                <p>
+                    No boring corporate vibes.
+                    Just memes, community and chaos.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Built on Solana</h3>
+                <p>
+                    Fast, cheap and made for the
+                    internet's favorite goblins.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">❤️</div>
+                <h3>Give Back</h3>
+                <p>
+                    All proceeds go to charitable causes.
+                    Goblins can have hearts too.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ROADMAP -->
+
+<section id="roadmap" class="roadmap">
+
+    <div class="container">
+
+        <div class="section-title">
+            Goblin <span>Roadmap.</span>
+        </div>
+
+        <div class="timeline">
+
+            <div class="phase">
+                <small>Phase 01</small>
+                <h3>The Goblin Awakens 👺</h3>
+                <p>
+                    Launch. Website. Memes.
+                    Build the first goblin army.
+                </p>
+            </div>
+
+            <div class="phase">
+                <small>Phase 02</small>
+                <h3>Goblin Takeover ⚡</h3>
+                <p>
+                    Community growth, collaborations,
+                    more memes and more chaos.
+                </p>
+            </div>
+
+            <div class="phase">
+                <small>Phase 03</small>
+                <h3>Give Back ❤️</h3>
+                <p>
+                    Support charitable causes and
+                    show that goblins can make a difference.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMMUNITY -->
+
+<section id="community" class="community">
+
+    <div class="container">
+
+        <div class="section-title">
+            Join the <span>Goblin Army.</span>
+        </div>
+
+        <p>
+            Follow the goblin. Join the community.
+            Watch the chaos unfold.
+        </p>
+
+        <div class="buttons">
+
+            <a class="btn primary"
+               href="YOUR_X_LINK"
+               target="_blank">
+               JOIN ON 𝕏
+            </a>
+
+            <a class="btn secondary"
+               href="YOUR_TELEGRAM_LINK"
+               target="_blank">
+               TELEGRAM
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <strong>♥ All proceeds go to charitable causes.</strong>
+
+    <div class="contract">
+        CA: YOUR_SOLANA_CONTRACT_ADDRESS
+    </div>
+
+    <br>
+
+    © 2026 Solana Goblin. All rights reserved.
+
+</footer>
+
+
+</body>
+</html>
+```
